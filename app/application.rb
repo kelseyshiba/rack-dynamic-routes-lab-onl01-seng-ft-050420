@@ -6,8 +6,7 @@ class Application
 
     if req.path.match(/items/)
       user_item = req.path.split("/items/").last
-      if found_item = @@items.collect {|item| item.name == user_item}
-        binding.pry
+      if found_item = @@items.find {|item| item.name == user_item}
         found_item.each {|item| resp.write("#{item.price}")}
         resp.status = 200
       else 
